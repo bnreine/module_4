@@ -1,0 +1,40 @@
+1. In your own words highlight the differences in functionality and
+purposes Client-Side and Server-Side code serves in a full-stack web application.
+
+ANSWER:
+
+Client: makes requests/receives responses, handles user manipulations, and
+  renders in the browser.
+Server: receives requests/sends responses and runs in node.
+
+
+
+2. What explains Nodes' rise in popularity and use? What does "Isomorphic
+JavaScript programming" mean? Provide some real-world examples not listed
+in this checkpoint of companies using Node.js.
+
+ANSWER:
+
+REASONS FOR NODE'S RISE in popularity:
+Chrome's V8 JavaScript engine enables back to front end development
+Single language for back and front ends
+JavaScript: event driven and non-blocking ---> good for server side apps
+Node: continuously processes requests without waiting for responses.
+
+
+Isomorphic JS programming meaning:
+You can run JavaScript in both the front (client) and back (server) ends.
+In the context of single page applications, the server prepares the page that
+ the client requests renders it, and then loads the rest of the SPA in the background.
+ This makes the initial page load fast and also offers fast page switches later on.
+
+Real world examples of companies using Node:
+-paypal
+-ebay
+-nasa
+
+
+
+3. Draw a diagram of a full-stack web application and its key components.
+
+See fullstack_picture.png
