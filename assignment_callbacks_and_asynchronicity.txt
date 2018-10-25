@@ -1,0 +1,87 @@
+1. What is the difference between readdirSync and readdir?
+
+readdirSync reads the directory synchronously.  Whereas readdir reads it asynchronously.
+
+
+2. What is the event loop and how does it handle asynchronous requests?
+
+The event loop handles callback functions sent back to the runtime from linked
+apis via a queue.  Once the runtime stack is empty, javascript places the next in
+line in the queue into the call stack.
+
+
+3. Given the following code, specify whether the program is asynchronous
+and non-blocking or synchronous and blocking or synchronous and non-blocking.
+
+const fs = require('fs');
+const file = fs.readFileSync('foo.txt');
+console.log(file.toString());
+
+
+Synchronous and blocking
+
+4. Given the following code, specify whether the program is asynchronous
+and non-blocking or synchronous and blocking or synchronous and non-blocking.
+
+const fs = require('fs');
+fs.readFile('foo.txt', (err, file) => {
+ if (err) throw err;
+ console.log(file.toString());
+});
+console.log("test");
+
+Asynchronous and non-blocking
+
+
+5. In what order will the console.log statements execute in the code below?
+
+const fs = require('fs');
+fs.readFile('foo.txt', (err, file) => {
+ if (err) throw err;
+ console.log("A");
+ console.log("B")
+});
+console.log("C");
+
+CAB
+
+
+
+6. setTimeout is a JavaScript function which calls a function after a
+set amount of milliseconds. Given the following code, explain in what
+sequence the functions will run and why.
+
+function greeting() {
+ setTimeout(() => {
+   console.log("friend");
+ }, 100);
+}
+
+function hello(){
+ console.log("hello");
+}
+
+greeting();
+hello();
+
+JavaScript calls the function greeting first and then the function hello.
+However, you see "hello" first and
+then "friend" because setTimeout is an asynchronous api call.  So the callback with
+the console.log("friend") goes to the api, waits 0.1 seconds, then inserts into
+the queue.  Meanwhile in that 0.1 seconds, javascript parsed and executed the
+function hello, which immediately printed "hello".  After that, javascript added the
+console.log callback from the queue into the stack, executed and printed "friend".
+
+
+
+
+7. Create a function which utilizes a callback. Make sure to add console.log
+statements to understand when your callback function is called.
+
+function slowHello() {
+  setTimeout(() => {
+    console.log("Hello");
+  }, 5000);
+}
+
+slowHello();
